@@ -4,11 +4,12 @@ import P001
 import P002
 import P003
 import P004
+import P005
 
 format :: Show a => (Integer, a) -> String
 format (i, v) = "Problem " ++ show i ++ ": " ++ show v
 
-solved = [p001, p002, p003, p004]
+solved = [p001, p002, p003, p004, p005]
 
 main :: IO ()
 main = do
