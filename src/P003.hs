@@ -1,5 +1,5 @@
 module P003(
-  p003) where
+  p003, primes) where
 
 p003 :: Int
 p003 = maximum $ factors 600851475143
