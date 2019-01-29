@@ -1,8 +1,19 @@
 module P005(
   p005) where
 
-p005 :: Int
-p005 = head $ filter divisible [11,22..]
+import Data.List
+import Data.Function( on )
 
-divisible :: Int -> Bool
-divisible n = all (\i -> mod n i == 0) [20, 19..12]
+p005 :: Int
+p005 = product $ primes >>= \n -> filter (== n) . maxim . filter (elem n) $ facts
+  where
+    maxim = maximumBy (compare `on` length)
+    facts = map factors [11..20]
+
+factors :: Int -> [Int]
+factors n
+  | elem n primes = [n]
+  | otherwise     = i : factors (div n i)
+  where (i:_) = filter ((== 0) . mod n) primes
+
+primes = [2,3,5,7,11,13,17,19]
