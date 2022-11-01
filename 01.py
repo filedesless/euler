@@ -8,7 +8,7 @@ def iterative(a, b, n):
 
 def s(n):
     """Constant time equivalent to sum(i for i in range(n+1))"""
-    return n*(n+1)/2
+    return n*(n+1)//2
 
 
 def m(n, u):
@@ -26,7 +26,7 @@ def constant(a, b, u):
     +   Sum of the multiples of b
     -   Sum of the multiples of a and b (multiples of a*b)
     """
-    return int(m(a, u - 1) + m(b, u - 1) - m(a*b, u - 1))
+    return m(a, u - 1) + m(b, u - 1) - m(a*b, u - 1)
 
 
 def bench(f, n):
