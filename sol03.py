@@ -13,5 +13,5 @@ def trial_division(n: int) -> list[int]:
 
 
 assert trial_division(13195) == [5, 7, 13, 29]
-
-print(max(trial_division(600851475143)))
+if __name__ == 'main':
+    print(max(trial_division(600851475143)))
