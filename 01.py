@@ -1,4 +1,4 @@
-from timeit import timeit
+from bench import bench
 
 
 def iterative(a, b, n):
@@ -29,12 +29,6 @@ def constant(a, b, u):
     return m(a, u - 1) + m(b, u - 1) - m(a*b, u - 1)
 
 
-def bench(f, n):
-    a, b = 3, 5
-    t = timeit(lambda: f(a, b, n), number=10000)
-    print(f"{f.__name__}({a}, {b}, {n}) = {f(a, b, n)} ran in {t}s")
-
-
 # tests
 for n in range(1, 10):
     for u in range(n, 100):
@@ -45,5 +39,5 @@ assert iterative(3, 5, 1000) == constant(3, 5, 1000)
 
 # benchmarks
 for i in range(1, 4):
-    bench(iterative, 10**i)
-    bench(constant, 10**i)
+    bench(iterative, 1000, 3, 5, 10**i)
+    bench(constant, 1000, 3, 5, 10**i)
