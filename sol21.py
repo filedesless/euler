@@ -3,28 +3,27 @@ from functools import cache
 
 
 @cache
-def divisors(n):
+def proper_divisors(n):
     return factors(n) - {n}
 
 
-assert divisors(220) == {1, 2, 4, 5, 10, 11, 20, 22, 44, 55, 110}
-assert divisors(284) == {1, 2, 4, 71, 142}
-
-
 @cache
-def d(n):
-    return sum(divisors(n))
-
-
-assert d(220) == 284
-assert d(284) == 220
+def alliquot(n):
+    return sum(proper_divisors(n))
 
 
 def amicable(a, b):
-    return d(a) == b and d(b) == a
+    return alliquot(a) == b and alliquot(b) == a
 
 
-l = [(a, b) for a in range(10_001) for b in range(a) if amicable(a, b)]
+if __name__ == '__main__':
+    assert proper_divisors(220) == {1, 2, 4, 5, 10, 11, 20, 22, 44, 55, 110}
+    assert proper_divisors(284) == {1, 2, 4, 71, 142}
 
-print(l)
-print(sum(a + b for (a, b) in l))
+    assert alliquot(220) == 284
+    assert alliquot(284) == 220
+
+    l = [(a, b) for a in range(10_001) for b in range(a) if amicable(a, b)]
+
+    print(l)
+    print(sum(a + b for (a, b) in l))
